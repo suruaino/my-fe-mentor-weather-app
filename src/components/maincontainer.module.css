@@ -1,0 +1,30 @@
+.feels{
+
+    /* background: red; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.5rem;
+}
+.feels span{
+    background: var(--bg4);
+    display: block;
+    height: 6rem;
+    border-radius: 10px;
+}
+.screen{
+    background: url("/images/bg-today-large.svg");
+    /* background: red; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.dailyForcast{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.5rem;
+}
+.dailyForcast li{
+    background: var(--bg4);
+    height: 9rem;
+    border-radius: 10px;
+}

@@ -1,0 +1,6 @@
+.bottom li{
+ background: var(--bg4);
+ height: 2.5rem;
+ display: flex;
+ border-radius: 10px;
+}
