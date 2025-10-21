@@ -216,7 +216,7 @@ const MainContainer = () => {
                     <div>
                     <WeatherIcon
                       code={dailyData.weathercode[i]}
-                      className="h-full"
+                      className="h-full w-16"
                     />
                     </div>
                     <div className="w-full flex justify-between">

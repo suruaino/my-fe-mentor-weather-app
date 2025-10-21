@@ -52,9 +52,9 @@ const HourlyForcast = ({ hourlyData, hourlyUnits }) => {
           {hourlyData.time.slice(start, end).map((hour, i) => (
             <li
               key={hour}
-              className="px-2 py-2 flex items-center justify-between text-sm"
+              className="px-2 flex items-center justify-between text-sm"
             >
-              <WeatherIcon code={hourlyData.weathercode[start + i]} className="h-full" />
+              <WeatherIcon code={hourlyData.weathercode[start + i]} className="h-12 aspect-square"/>
               <span>
                 {new Date(hour).toLocaleTimeString([], {
                   hour: "2-digit",
