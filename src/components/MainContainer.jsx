@@ -13,7 +13,6 @@ const MainContainer = () => {
   const [dailyUnits, setDailyUnits] = useState("");
   const [hourlyData, setHourlyData] = useState("");
   const [myDate, setMyDate] = useState("");
-  //   const [currentWeatherUnits, setCurrentWeatherUnits] = useState("");
   const [currentUnits, setCurrentUnits] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -21,7 +20,6 @@ const MainContainer = () => {
     const icon = WeatherIcons[code] || "❔";
     return <span style={{ fontSize: "2rem" }}>{icon}</span>;
   }
-
 
   useEffect(() => {
     if (currentData?.time) {
@@ -74,7 +72,6 @@ timezone=auto
     } finally {
       setLoading(false);
     }
-    // }, [searchParam]);
   };
 
   return (
@@ -101,8 +98,6 @@ timezone=auto
               )}
             </div>
             <div className="curr-temp text-5xl font-bold">
-              {/* {currentData.temperature} */}
-              {/* {currentWeatherUnits.temperature} */}
               {currentData.temperature_2m}
               {currentUnits.temperature_2m}
             </div>
@@ -127,7 +122,6 @@ timezone=auto
           </div>
           <div className="mt-4 flex flex-col gap-2">
             <h3>Daily forcast</h3>
-            {/* <div className={`daily-forcast ${styles.dailyForcast}`}> */}
 
             {dailyData && dailyData.time ? (
               <ul className={`daily-forcast  ${styles.dailyForcast}`}>
@@ -139,14 +133,7 @@ timezone=auto
                     {new Date(date).toLocaleDateString("en-US", {
                       weekday: "long",
                     })}{" "}
-                    {/* {WeatherIcons?.[i] } */}
-                    {/* <WeatherIcon code={code} /> */}
                     <WeatherIcon code={dailyData.weathercode[i]} />
-                    {/* {dailyData.weathercode.map((code, i) => (
-                      <div key={i}>
-                        <WeatherIcon code={code} />
-                      </div>
-                    ))} */}
                     <div className="w-full flex justify-between">
                       <span className="text-xs">
                         {dailyData.temperature_2m_max[i]}°C
@@ -161,11 +148,9 @@ timezone=auto
             ) : (
               <p>Loading daily forecast...</p>
             )}
-
-            {/* </div> */}
           </div>
         </div>
-        <HourlyForcast hourlyData= {hourlyData}/>
+        <HourlyForcast hourlyData={hourlyData} />
       </div>
     </main>
   );
