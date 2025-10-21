@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useUnit } from "../context/UnitContext";
-import Hero from "./Hero";
+import Hero from "./Hero.jsx";
 import HourlyForcast from "./HourlyForcast";
 import styles from "./maincontainer.module.css";
 import WeatherIcon from "./WeatherIcon.jsx";
@@ -19,12 +19,28 @@ const MainContainer = () => {
   const [currentUnits, setCurrentUnits] = useState({});
   const [loading, setLoading] = useState(false);
   const [lastLocation, setLastLocation] = useState(null);
+  const [locationOptions, setLocationOptions] = useState([]);
+  const [showOptions, setShowOptions] = useState(false);
 
   useEffect(() => {
     if (currentData?.time) {
       setMyDate(new Date(currentData.time));
     }
   }, [currentData]);
+
+  // Fetch weather for Lagos on initial mount
+  useEffect(() => {
+    const fetchDefaultWeatherData = async () => {
+      // Hardcoded coordinates for Lagos, Nigeria
+      const latitude = 6.5244;
+      const longitude = 3.3792;
+      const name = "Lagos";
+      const country = "Nigeria";
+      setLastLocation({ latitude, longitude, name, country });
+      await fetchWeatherData(latitude, longitude, name, country);
+    };
+    fetchDefaultWeatherData();
+  }, []);
 
   // Re-fetch weather data when the unit system changes
   useEffect(() => {
@@ -38,29 +54,55 @@ const MainContainer = () => {
     }
   }, [unitSystem]);
 
+  // Fetch location options as user types
+  useEffect(() => {
+    if (searchParam.trim().length > 2) {
+      const debounceTimeout = setTimeout(() => {
+        fetchLocationOptions();
+      }, 500); // 500ms debounce
+
+      return () => clearTimeout(debounceTimeout);
+    } else {
+      setLocationOptions([]);
+      setShowOptions(false);
+    }
+  }, [searchParam]);
+
   const handleSearchInput = (e) => {
     const value = e.target.value;
     setSearchParam(value);
+    setShowOptions(true);
   };
 
-  const searchLocation = async () => {
-    if (!searchParam.trim()) {
-      console.warn("Please enter a location");
-      return;
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (locationOptions.length > 0) {
+      // Automatically select the first option on manual search
+      handleOptionClick(locationOptions[0]);
     }
+  };
+
+  const fetchLocationOptions = async () => {
     setLoading(true);
     try {
       const api = `https://geocoding-api.open-meteo.com/v1/search?name=${searchParam}`;
       const response = await fetch(api);
       const data = await response.json();
-      const { name, country, latitude, longitude } = data.results[0];
-      setLastLocation({ latitude, longitude, name, country }); // Save location
-      await fetchWeatherData(latitude, longitude, name, country);
+      setLocationOptions(data.results || []);
     } catch (err) {
       console.error("Error fetching location:", err);
+      setLocationOptions([]);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleOptionClick = (option) => {
+    const { latitude, longitude, name, country } = option;
+    setLastLocation({ latitude, longitude, name, country });
+    fetchWeatherData(latitude, longitude, name, country);
+    setShowOptions(false);
+    setSearchParam(""); // Clear search input after selection
   };
 
   const fetchWeatherData = async (latitude, longitude, name, country) => {
@@ -95,9 +137,13 @@ const MainContainer = () => {
   return (
     <main className="w-full border border-green-600 py-6 flex flex-col items-center">
       <Hero
-        searchLocation={searchLocation}
+        searchParam={searchParam}
         handleSearchInput={handleSearchInput}
+        handleSearchSubmit={handleSearchSubmit}
         isLoading={loading}
+        locationOptions={locationOptions}
+        handleOptionClick={handleOptionClick}
+        showOptions={showOptions}
       />
       <div className="border border-red-600 w-full max-w-[90%] h-screen mt-4 flex flex-col md:flex-row gap-4">
         <div className="left w-full flex flex-col gap-4">

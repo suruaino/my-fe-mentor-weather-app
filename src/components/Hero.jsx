@@ -1,22 +1,55 @@
+import React from "react";
+import { FaSearch } from "react-icons/fa";
 
-
-import searchIcon from "/icons/icon-search.svg"
-import styles from "./hero.module.css";
-
-const Hero = ({handleSearchInput, searchLocation, isLoading}) => {
-
-    return(
-        <div className={`hero max-w-[90%] md:h-[10rem] w-full mt-10 flex flex-col items-center justify-center self-center gap-8`}>
-            <h1 className="text-6xl text-center md:text-3xl">How's the sky looking today?</h1>
-            <div className="search w-full md:max-w-[60%] mt-10 md:mt-0 flex flex-col md:flex-row self-center gap-2">
-                <div className="input w-full bg-[var(--bg2)] px-4 flex gap-2 rounded-md">
-                    <img src={searchIcon} alt="search-icon" className="w-5"/>
-                    <input onChange={handleSearchInput} type="text" placeholder="Search for a place..." className={`w-full px-2 h-10 bg-transparent active:outline-1 border-0 ${styles.input}`}/>
-                </div>
-                <button onClick={searchLocation} className="bg-[var(--blue)] h-10 px-4 rounded-md">{isLoading? "Searching..." : "Search"}</button>
-            </div>
+const Hero = ({
+  handleSearchInput,
+  handleSearchSubmit,
+  searchParam,
+  isLoading,
+  locationOptions,
+  handleOptionClick,
+  showOptions,
+}) => {
+  return (
+    <div className="hero relative w-full max-w-[90%] md:max-w-[60%]">
+      <form
+        onSubmit={handleSearchSubmit}
+        className="flex items-center"
+      >
+        <div className="w-full max-w-[60rem] flex gap-2 relative">
+            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--accent)]"/>
+        <input
+          type="text"
+          placeholder="Search for a location"
+          value={searchParam}
+          onChange={handleSearchInput}
+          className="w-full p-3 pl-12 rounded-l-lg bg-[var(--bg3)] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+        />
+        <button type="submit" className="bg-[var(--blue)] p-3 px-4 rounded-r-lg border border-transparent active:border active:border-[var(--accent)]">
+          {isLoading ? "searching..." : "search"}
+        </button>
         </div>
-    )
-}
+      </form>
+
+      {showOptions && locationOptions.length > 0 && (
+        <ul className="absolute top-full left-0 right-0 mt-2 bg-[var(--bg2)] border border-gray-700 rounded-lg shadow-lg z-10">
+          {isLoading ? (
+            <li className="p-3 text-gray-400">Loading...</li>
+          ) : (
+            locationOptions.map((option) => (
+              <li
+                key={option.id}
+                onClick={() => handleOptionClick(option)}
+                className="p-3 cursor-pointer hover:bg-[var(--bg3)] transition-colors"
+              >
+                {option.name}, {option.admin1}, {option.country}
+              </li>
+            ))
+          )}
+        </ul>
+      )}
+    </div>
+  );
+};
 
 export default Hero;
