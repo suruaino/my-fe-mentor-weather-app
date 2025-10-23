@@ -1,10 +1,26 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./hourlyforcast.module.css";
 import WeatherIcon from "./WeatherIcon.jsx";
+import dropdownIcon from "/icons/icon-dropdown.svg";
 
 const HourlyForcast = ({ hourlyData, hourlyUnits }) => {
   const [selectedDay, setSelectedDay] = useState(0);
+  const [showDayDropdown, setShowDayDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDayDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
 
   if (!hourlyData || !hourlyData.time) {
     return <p>Loading hourly forecast...</p>;
@@ -25,23 +41,39 @@ const HourlyForcast = ({ hourlyData, hourlyUnits }) => {
     "Saturday",
   ];
 
+  const handleDaySelect = (index) => {
+    setSelectedDay(index);
+    setShowDayDropdown(false);
+  };
+
   return (
     <div className="right bg-[var(--bg2)] w-full h-full md:h-[calc(100vh+16rem)] lg:h-screen md:w-[calc(100%/3)] p-4 flex flex-col gap-2 rounded-xl">
       {/* --- Header --- */}
       <div className="top h-[10%] flex justify-between items-center">
         <h2 className="min-w-[6.3rem] text-sm">Hourly Forecast</h2>
 
-        <select
-          className="bg-[var(--bg3)] max-w-[6rem] p-1 px-2 flex gap-3 rounded-lg"
-          value={selectedDay}
-          onChange={(e) => setSelectedDay(Number(e.target.value))}
-        >
-          {days.map((day, index) => (
-            <option key={day} value={index}>
-              {day}
-            </option>
-          ))}
-        </select>
+        <div className="relative" ref={dropdownRef}>
+          <button
+            onClick={() => setShowDayDropdown((prev) => !prev)}
+            className="bg-[var(--bg3)] w-[7rem] py-[0.35rem] px-2 flex items-center gap-2 rounded-lg"
+          >
+            <span className="text-sm">{days[selectedDay]}</span>
+            <img src={dropdownIcon} alt="dropdown" className={`w-3 transition-transform ${showDayDropdown ? "rotate-180" : ""}`} />
+          </button>
+          {showDayDropdown && (
+            <ul className="text-left p-[.5rem] absolute top-full right-0 mt-1 w-[10rem] bg-[var(--bg2)] border border-[var(--bg3)] rounded-lg shadow-lg shadow-black z-20">
+              {days.map((day, index) => (
+                <li
+                  key={day}
+                  onClick={() => handleDaySelect(index)}
+                  className="p-2 cursor-pointer rounded-lg hover:bg-[var(--bg3)]"
+                >
+                  {day}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
 
       {/* --- Hourly forecast list --- */}
