@@ -135,7 +135,7 @@ const MainContainer = () => {
   };
 
   return (
-    <main className="w-full border border-green-600 py-6 flex flex-col items-center">
+    <main className="DM Sans w-full pb-6 flex flex-col items-center">
       <Hero
         searchParam={searchParam}
         handleSearchInput={handleSearchInput}
@@ -145,10 +145,10 @@ const MainContainer = () => {
         handleOptionClick={handleOptionClick}
         showOptions={showOptions}
       />
-      <div className="border border-red-600 w-full max-w-[90%] h-screen mt-4 flex flex-col md:flex-row gap-4">
+      <div className="w-full max-w-[90%] h-full mt-4 flex flex-col md:flex-row gap-4">
         <div className="left w-full flex flex-col gap-4">
           <div
-            className={`screen  border rounded-xl h-[19rem] w-full px-4 md:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center  ${styles.screen}`}
+            className={`screen rounded-xl min-h-[12rem] w-full px-4 md:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center  ${styles.screen}`}
           >
             <div className="city-details text-center md:text-left">
               <div className="city text-2xl font-bold">{`${cityName}, ${country}`}</div>
@@ -204,11 +204,11 @@ const MainContainer = () => {
             <h3>Daily forcast</h3>
 
             {dailyData && dailyData.time ? (
-              <ul className={`daily-forcast  ${styles.dailyForcast}`}>
+              <ul className={`daily-forcast ${styles.dailyForcast}`}>
                 {dailyData.time.map((date, i) => (
                   <li
                     key={date}
-                    className="text-sm p-2 h-full flex flex-col justify-between items-center border"
+                    className="text-sm p-2 h-full flex flex-col justify-between items-center"
                   >
                     {new Date(date).toLocaleDateString("en-US", {
                       weekday: "short",

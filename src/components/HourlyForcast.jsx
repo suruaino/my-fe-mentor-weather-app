@@ -26,13 +26,13 @@ const HourlyForcast = ({ hourlyData, hourlyUnits }) => {
   ];
 
   return (
-    <div className="right bg-[var(--bg2)] w-full md:w-[calc(100%/3)] p-4 flex flex-col gap-2 border rounded-xl">
+    <div className="right bg-[var(--bg2)] w-full h-full md:h-[calc(100vh+16rem)] lg:h-screen md:w-[calc(100%/3)] p-4 flex flex-col gap-2 rounded-xl">
       {/* --- Header --- */}
       <div className="top h-[10%] flex justify-between items-center">
-        <h2>Hourly Forecast</h2>
+        <h2 className="min-w-[6.3rem] text-sm">Hourly Forecast</h2>
 
         <select
-          className="bg-[var(--bg4)] p-1 px-2 flex gap-3 rounded-lg"
+          className="bg-[var(--bg3)] max-w-[6rem] p-1 px-2 flex gap-3 rounded-lg"
           value={selectedDay}
           onChange={(e) => setSelectedDay(Number(e.target.value))}
         >

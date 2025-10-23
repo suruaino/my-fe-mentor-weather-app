@@ -6,14 +6,14 @@
     gap: 0.5rem;
 }
 .feels span{
-    background: var(--bg4);
+    background: var(--bg2);
     display: block;
     height: 6rem;
+    border: 1px solid var(--bg3);
     border-radius: 10px;
 }
 .screen{
     background: url("/images/bg-today-large.svg");
-    /* background: red; */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -24,7 +24,8 @@
     gap: 0.5rem;
 }
 .dailyForcast li{
-    background: var(--bg4);
+    background: var(--bg2);
     height: 9rem;
+    border: 1px solid var(--bg3);
     border-radius: 10px;
 }

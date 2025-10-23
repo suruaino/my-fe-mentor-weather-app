@@ -120,7 +120,7 @@ const Header = () => {
   }, [dropdownRef]);
 
   return (
-    <header className="h-[4rem] w-full px-4 flex justify-between items-center border border-gray-700 relative">
+    <header className="font-bricolage h-[8rem] w-full px-4 md:px-12 flex justify-between items-center relative">
       {/* Logo */}
       <div className="logo">
         <img src={logo} alt="Main Logo" className="h-8" />
@@ -129,7 +129,7 @@ const Header = () => {
       {/* Units button */}
       <button
         onClick={toggleDropdown}
-        className="border border-gray-700 px-4 py-2 flex items-center gap-3 rounded-xl hover:bg-[var(--bg2)] transition"
+        className="bg-[var(--bg2)] border border-[var(--bg3)] px-3 py-2 flex items-center gap-3 rounded-xl hover:bg-[var(--bg2)] transition"
       >
         <img src={unit} alt="" className="w-5" />
         <span>Units</span>

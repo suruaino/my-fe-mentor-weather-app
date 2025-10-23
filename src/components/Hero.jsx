@@ -11,21 +11,22 @@ const Hero = ({
   showOptions,
 }) => {
   return (
-    <div className="hero relative w-full max-w-[90%] md:max-w-[60%]">
+    <div className="hero text-center flex flex-col items-center gap-10 relative w-full ">
+      <h1 className="font-bricolage max-w-[80%] text-[3.5rem] leading-tight">How's the sky looking today?</h1>
       <form
         onSubmit={handleSearchSubmit}
-        className="flex items-center"
+        className="w-[90%] md:max-w-[55%] flex items-center"
       >
-        <div className="w-full max-w-[60rem] flex gap-2 relative">
+        <div className="w-full max-w-[60rem] flex gap-1 relative">
             <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--accent)]"/>
         <input
           type="text"
           placeholder="Search for a location"
           value={searchParam}
           onChange={handleSearchInput}
-          className="w-full p-3 pl-12 rounded-l-lg bg-[var(--bg3)] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          className="w-full py-2 px-3 pl-12 rounded-l-lg bg-[var(--bg2)] border border-[var(--bg3)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
         />
-        <button type="submit" className="bg-[var(--blue)] p-3 px-4 rounded-r-lg border border-transparent active:border active:border-[var(--accent)]">
+        <button type="submit" className="bg-[var(--blue)] py-2 px-4 rounded-r-lg border border-transparent active:border active:border-[var(--accent)]">
           {isLoading ? "searching..." : "search"}
         </button>
         </div>

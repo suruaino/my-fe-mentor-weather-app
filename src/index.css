@@ -12,15 +12,16 @@
   line-height: 1.5;
   font-weight: 400;
 
-  --bg2: hsl(243, 27%, 20%);
-  --bg4: hsl(243, 23%, 24%);
-  --bg3: hsl(243, 23%, 24%);
-  --blue: hsl(233, 67%, 56%);
+  --bg1: #25253F;
+  --bg2: #2F2F49;
+  --bg3: #3C3B5D;
+  --blue: #4657D9;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  background-color: hsl(243, 96%, 9%);
+  /* background-color: #242424; */
+  /* background-color: hsl(243, 96%, 9%); */
+  background-color: var(--bg1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
