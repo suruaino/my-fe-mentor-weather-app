@@ -47,7 +47,7 @@ const HourlyForcast = ({ hourlyData, hourlyUnits }) => {
   };
 
   return (
-    <div className="right bg-[var(--bg2)] w-full h-full md:h-[calc(100vh+16rem)] lg:h-screen md:w-[calc(100%/3)] p-4 flex flex-col gap-2 rounded-xl">
+    <div className="right bg-[var(--bg2)] w-full h-full md:h-[calc(100vh+16rem)] lg:h-screen xl:h-[calc(100vh-5.8rem)] md:w-[calc(100%/3)] p-4 xl:mb-3 flex flex-col gap-2 rounded-xl">
       {/* --- Header --- */}
       <div className="top h-[10%] flex justify-between items-center">
         <h2 className="min-w-[6.3rem] text-sm">Hourly Forecast</h2>
@@ -86,6 +86,7 @@ const HourlyForcast = ({ hourlyData, hourlyUnits }) => {
               key={hour}
               className="px-2 flex items-center justify-between text-sm"
             >
+              <div  className="flex items-center gap-4">
               <WeatherIcon code={hourlyData.weathercode[start + i]} className="h-12 aspect-square"/>
               <span>
                 {new Date(hour).toLocaleTimeString([], {
@@ -93,6 +94,7 @@ const HourlyForcast = ({ hourlyData, hourlyUnits }) => {
                   minute: "2-digit",
                 })}
               </span>
+              </div>
               <span>{Math.round(hourlyData.temperature_2m[start + i])}{hourlyUnits?.temperature_2m}</span>
             </li>
           ))}
