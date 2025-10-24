@@ -12,7 +12,7 @@ const Hero = ({
 }) => {
   return (
     <div className="hero text-center flex flex-col items-center gap-10 relative w-full ">
-      <h1 className="font-bricolage max-w-[80%] text-[3.5rem] leading-tight">How's the sky looking today?</h1>
+      <h1 className="font-bricolage max-w-[87%] sm:max-w-[80%] text-[3.25rem] sm:text-[3.5rem] leading-tight">How's the sky looking today?</h1>
       <form
         onSubmit={handleSearchSubmit}
         className="w-[90%] md:max-w-[55%] flex items-center"
