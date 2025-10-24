@@ -138,7 +138,7 @@ const Header = () => {
 
       {/* Dropdown menu */}
       {showDropdown && (
-        <div ref={dropdownRef} className="absolute right-12 top-[5.8rem] w-[12rem] bg-[var(--bg2)] border border-gray-700 rounded-lg shadow-lg p-3 flex flex-col gap-4 z-50">
+        <div ref={dropdownRef} className="absolute right-4 md:right-12 top-[5.8rem] w-[12rem] bg-[var(--bg2)] border border-gray-700 rounded-lg shadow-lg p-3 flex flex-col gap-4 z-50">
           <button
             onClick={toggleUnits}
             className="w-full h-10 border border-gray-600 rounded-lg hover:bg-[var(--bg3)] transition"
