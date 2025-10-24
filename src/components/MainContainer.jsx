@@ -8,8 +8,8 @@ import WeatherIcon from "./WeatherIcon.jsx";
 const MainContainer = () => {
   const { unitSystem } = useUnit();
   const [searchParam, setSearchParam] = useState("");
-  const [cityName, setCityName] = useState("");
-  const [country, setCountry] = useState("");
+  const [cityName, setCityName] = useState("Lagos");
+  const [country, setCountry] = useState("Nigeria");
   const [currentData, setCurrentData] = useState({});
   const [dailyData, setDailyData] = useState({});
   const [dailyUnits, setDailyUnits] = useState({});

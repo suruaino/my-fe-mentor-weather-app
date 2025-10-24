@@ -1,5 +1,5 @@
 .bottom > ul {
-    scrollbar-color: var(--bg2) var(--bg3); /* thumb color and track color */
+    scrollbar-color: var(--bg2cd) var(--bg3); /* thumb color and track color */
     scrollbar-width: thin; /* Options: auto, thin, none */
 }
 .bottom li{
