@@ -29,11 +29,8 @@ const Hero = ({
         <button type="submit" className="bg-[var(--blue)] py-2 px-4 rounded-r-lg border border-transparent active:border active:border-[var(--accent)]">
           {isLoading ? "searching..." : "search"}
         </button>
-        </div>
-      </form>
-
-      {showOptions && locationOptions.length > 0 && (
-        <ul className="absolute top-full left-0 right-0 mt-2 bg-[var(--bg2)] border border-gray-700 rounded-lg shadow-lg z-10">
+        {showOptions && locationOptions.length > 0 && (
+        <ul className="text-left absolute top-full left-0 right-0 p-2 mt-2 bg-[var(--bg2)] border border-[var(--bg3)] rounded-lg shadow-lg z-10">
           {isLoading ? (
             <li className="p-3 text-gray-400">Loading...</li>
           ) : (
@@ -41,7 +38,7 @@ const Hero = ({
               <li
                 key={option.id}
                 onClick={() => handleOptionClick(option)}
-                className="p-3 cursor-pointer hover:bg-[var(--bg3)] transition-colors"
+                className="p-3 cursor-pointer hover:bg-[var(--bg3)] transition-colors rounded-md"
               >
                 {option.name}, {option.admin1}, {option.country}
               </li>
@@ -49,6 +46,10 @@ const Hero = ({
           )}
         </ul>
       )}
+        </div>
+      </form>
+
+      
     </div>
   );
 };
