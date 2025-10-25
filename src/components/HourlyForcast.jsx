@@ -55,7 +55,7 @@ const HourlyForcast = ({ hourlyData, hourlyUnits }) => {
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setShowDayDropdown((prev) => !prev)}
-            className="bg-[var(--bg3)] w-[7rem] py-[0.35rem] px-2 flex items-center gap-2 rounded-lg"
+            className="bg-[var(--bg3)] w-[7rem] py-[0.35rem] px-2 flex items-center justify-between rounded-lg"
           >
             <span className="text-sm">{days[selectedDay]}</span>
             <img src={dropdownIcon} alt="dropdown" className={`w-3 transition-transform ${showDayDropdown ? "rotate-180" : ""}`} />
