@@ -148,7 +148,7 @@ const MainContainer = () => {
       <div className="w-full max-w-[90%] h-full mt-4 flex flex-col md:flex-row gap-4">
         <div className="left w-full flex flex-col gap-4">
           <div
-            className={`screen rounded-xl min-h-[12rem] w-full px-4 md:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center  ${styles.screen}`}
+            className={`screen rounded-xl min-h-[13.5rem] w-full px-4 md:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center  ${styles.screen}`}
           >
             <div className="city-details text-center md:text-left">
               <div className="city text-2xl font-bold">{`${cityName}, ${country}`}</div>
